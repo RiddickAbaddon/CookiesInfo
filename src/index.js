@@ -39,7 +39,7 @@ class CookiesInfo {
    constructor({
       cssPrefix = 'ci',
       title = 'Polityka Cookies',
-      description = 'Lorem ipsum dolor sit amet',
+      description = 'Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki.',
       acceptText = 'Akceptuje',
       acceptExpired = 30,
       removeTime = 1000,
@@ -48,7 +48,7 @@ class CookiesInfo {
       templateFn = null,
       debugMode = false,
    }) {
-      if (getCookie('cookiesaccept') === 'true') {
+      if (getCookie('cookiesAccepted') === 'true') {
          if (debugMode) {
             console.log('DebugMode: Cookies are accepted')
          } else {
@@ -86,7 +86,7 @@ class CookiesInfo {
    }
 
    #acceptClick() {
-      setCookie('cookiesaccept', 'true', this.config.acceptExpired)
+      setCookie('cookiesAccepted', 'true', this.config.acceptExpired)
       this.wrapperRef.classList.remove(`${this.config.cssPrefix}-show`)
       this.acceptButtonRef.removeEventListener('click', this.handleAcceptClick)
       setTimeout(() => {
