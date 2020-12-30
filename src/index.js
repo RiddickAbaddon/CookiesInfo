@@ -42,7 +42,7 @@ class CookiesInfo {
       description = 'Ten serwis wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt wg ustawień przeglądarki.',
       acceptText = 'Akceptuje',
       acceptExpired = 30,
-      removeTime = 1000,
+      removeDelay = 1000,
       showDelay = 100,
       infoButton = {},
       templateFn = null,
@@ -64,7 +64,7 @@ class CookiesInfo {
          description,
          acceptText,
          acceptExpired,
-         removeTime,
+         removeDelay,
          showDelay,
          infoButton: {
             text: text || 'Dowiedz się więcej',
@@ -95,7 +95,7 @@ class CookiesInfo {
          } else {
             this.wrapperRef.remove()
          }
-      }, this.config.removeTime)
+      }, this.config.removeDelay)
    }
 
    #init() {
