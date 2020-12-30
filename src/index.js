@@ -129,6 +129,9 @@ class CookiesInfo {
             )
          } catch (e) {
             console.error('Invalid template function')
+            if (this.config.debugMode) {
+               console.error(e)
+            }
          }
       }
 
@@ -139,7 +142,7 @@ class CookiesInfo {
       this.acceptButtonRef = this.acceptButtonRef
          ? this.acceptButtonRef
          : this.#createElement({
-              element: 'button',
+              tag: 'button',
               className: 'accept-button',
               children: this.config.acceptText,
            })
@@ -150,7 +153,7 @@ class CookiesInfo {
          this.infoButtonRef = this.infoButtonRef
             ? this.infoButtonRef
             : this.#createElement({
-                 element: 'a',
+                 tag: 'a',
                  className: 'info-button',
                  children: this.config.infoButton.text,
                  attributes: {
@@ -163,31 +166,31 @@ class CookiesInfo {
       this.wrapperRef = this.wrapperRef
          ? this.wrapperRef
          : this.#createElement({
-              element: 'section',
+              tag: 'section',
               className: 'wrapper',
               children: [
                  {
-                    element: 'div',
+                    tag: 'div',
                     className: 'container',
                     children: [
                        {
-                          element: 'div',
+                          tag: 'div',
                           className: 'information',
                           children: [
                              {
-                                element: 'h1',
+                                tag: 'h1',
                                 className: 'title',
                                 children: this.config.title,
                              },
                              {
-                                element: 'p',
+                                tag: 'p',
                                 className: 'description',
                                 children: this.config.description,
                              },
                           ],
                        },
                        {
-                          element: 'div',
+                          tag: 'div',
                           className: 'actions',
                           children: [this.infoButtonRef, this.acceptButtonRef],
                        },
@@ -203,8 +206,8 @@ class CookiesInfo {
       }, this.config.showDelay)
    }
 
-   #createElement({ element, className, children = null, attributes = null }) {
-      const documentElement = document.createElement(element)
+   #createElement({ tag, className, children = null, attributes = null }) {
+      const documentElement = document.createElement(tag)
       documentElement.setAttribute(
          'class',
          `${this.config.cssPrefix}-${className}`
@@ -231,14 +234,10 @@ class CookiesInfo {
          return null
       } else if (isElement(child)) {
          return child
-      } else if (
-         typeof child === 'object' &&
-         child.element &&
-         child.className
-      ) {
-         const { element, className, children = null } = child
+      } else if (typeof child === 'object' && child.tag && child.className) {
+         const { tag, className, children = null } = child
          return this.#createElement({
-            element,
+            tag,
             className,
             children,
          })
