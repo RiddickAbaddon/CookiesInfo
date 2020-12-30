@@ -1,6 +1,12 @@
 # CookiesInfo
 Simple and quick to configure, yet comprehensive library for information about cookies.
 
+**Index:**<br/>
+<a href="#basic-configuration">Basic configuration</a><br/>
+<a href="#configuration">Configuration details</a><br/>
+<a href="#template-configuration">Template configuration</a><br/>
+<a href="#theming">Theming</a>
+
 ## Basic configuration
 
 ```html
@@ -35,8 +41,8 @@ And it is already working.
 | acceptExpired | `number` | 30 | The number of **days** after which information about cookies will reappear. |
 | removeDelay | `number` | 1000 | After clicking the "Accept" button, the item with the information is removed from the DOM tree. This is the time in **milliseconds** after which the item will be deleted. |
 | showDelay | `number` | 100 | Time in **milliseconds** until the information appears. |
-| infoButton | `object` | [Object] | Configuration of a link leading to a page with information about cookies. For the link to appear, both the `title` and `link` options must be set. Details are in the next table. |
-| templateFn | `function` | null | A function in which you can change the html structure of the information. Details are provided below. |
+| infoButton | `object` | [Object] | Configuration of a link leading to a page with information about cookies. For the link to appear, both the `title` and `link` options must be set. Details in <a href="#infobutton-configuration">InfoButton configuration</a> |
+| templateFn | `function` | null | A function in which you can change the html structure of the information. Details in <a href="#template-configuration">Template configuration</a> |
 | debugMode | `boolean` | false | Debug mode is used to hold information on the screen so that it can be tested. |
 
 ### InfoButton configuration
@@ -156,3 +162,15 @@ This is default template
 | className | `string` | **required** | The name of the class to which the prefix is attached as follows: `cssPrefix-className` |
 | children | `array` | optional | Array of children elements. Takes the properties of a type: `string` (creates textNode), `DOM element` or nasted configuration `object` (creates nasted DOM element) |
 | attributes | `object` | optional | Adds HTML attributes to this element. Specified as `key: value` |
+
+## Theming
+You can add default theme css file to header section. This theme works if attributes `cssPrefix` and `templateFn` are default.
+```html
+<link rel="stylesheet" href="css/default-theme.css" />
+```
+
+### Modify default theme
+You can modify files in the scss folder and compile your own color theme with the SASS preprocessor. Note, however, that if you change the `cssPrefix` property or set your own template, this must be included in the styles.
+
+### Create new theme
+When creating your own style, it is important to remember that class names are created according to the template: `cssPrefix-className`
