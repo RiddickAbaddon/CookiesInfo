@@ -12,7 +12,7 @@ Simple and quick to configure, yet comprehensive library for information about c
 ```html
 <script src="js/cookiesInfo.js"></script>
 <script>
-   CookiesInfo();
+   CookiesInfo({});
 </script>
 ```
 And it is already working.
